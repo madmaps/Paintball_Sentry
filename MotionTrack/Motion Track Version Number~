@@ -1,0 +1,68 @@
+Motion Track Version Number 
+
+Version 1.01
+-Added releaseData to Frame class
+-Added DebugMode to Units Class
+-Removed Debug bmp File from Units class
+-Added getDebugFrame to frameAnalyzer, motionCapture and motionTrack classes
+-Added set/getDebugMode to units,frameAnalyzer,motionCapture,motionTrack classes
+-Added unitResolution Variable to unitsToTargets class and Linked it in frameAnalyzer
+-Added ViewFrame to MotionTrack,MotionCapture,FrameAnalyzer
+-Fixed currentFrameMovement in FrameManager so it works when update isn't enabled
+-Added reset Var to FrameManager
+-Added willResetNextFrame() and forceReset() to FrameManager, MotionCapture classes
+-Implemented willRestartNextFrame() and forceReset() in motionTrack class
+-Fixed bug with frame motion in frameManager::compareCompareFrames().
+-Removed calculateXAngle,calculateYAngle,calculateDistance,calculateX,calculateY,calculateZ,calculateSpeed from targetDatabase class
+-Added calculateGrades to targetDatabase class
+-Added grade method to targetPair class
+-Upgraded targetDatabase::addNewTargets() vastly improving tracking
+-Added maxTargetAverage to targetDatabase
+-Fixed bug in targetDatabase::retrieveTargets() from while(i<count || i<maxTargetAverage) to while(i<count  && i<maxTargetAverage)
+-Added set/get maxTargetAverage to motionTrack class
+-Added minGradeValue,colorAcc,locationAcc to targetDatabase class
+-Added set/get minGradeValue,dataBaseColorAcc,dataBaseLocationAcc to motionTrack class
+
+Version 1.02
+-Added xShift to motionTrack and added it in to the targetDatabase and targetPair methods
+-Added calibration class to motionTrack class
+-Added cameraSettings Struct
+-Added setCalibrationTarget and calibrate to motionTrack class
+-Replacing all the individual camera settings in motionTrack with a cameraSettings var
+-Added targetDatabase::getLargetsTargetPair()
+-Added width and height to cameraSettings Struct
+-Added getWidth,getHeight to motionTrack class
+-Changed targetPair::getTarget(cameraSettings,width,height) to targetPair::getTarget(cameraSettings)
+-Changed dataBase::addTargets(...individual camera settings...) with dataBase::addTargets(cameraSettings)
+
+Version 1.03
+-Added frame maskFrame to units class
+-Added maskFrame Setter to unit class and incorperated maskFrame into unit operator>>
+-Added setMaskFrame to frameAnalyzer,motionCapture and added setCamara0/1MaskFrame to motionTrack classes
+-Added Difference method to frame
+-Added in maskFrame to frameManager class
+-Implemented difference in frameManager::compareCompareFrames
+-Implemented setMaskFrame to motionCapture class
+-Added targetDatabase::getNumberOfTargets()
+-Added motionTrack::getNumberofTargets()
+
+
+Things to do......
+Calibration Y
+Changed targetPair.cpp line 285 from
+	difference = (inLocationAcc*5)-targetDistance;
+to
+	difference = (inLocationAcc*25)-targetDistance;
+Changed targetPair.cpp Line 292 from
+	locReturnInfo = (difference/(inLocationAcc*5))*25;
+to
+	locReturnInfo = (difference/(inLocationAcc*25))*25;
+Changed targetPair.cpp line 305,314,323 from
+	redAnswer=((inColorAcc-redDiff)/inColorAcc)*(50/3);
+to
+	redAnswer=((inColorAcc-redDiff)/inColorAcc)*(75/3);
+
+
+
+
+

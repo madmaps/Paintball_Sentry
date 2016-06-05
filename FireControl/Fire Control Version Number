@@ -1,0 +1,10 @@
+Fire Control V1.0
+
+Changed drvMotorSim.cpp line 185,192 and 155 from >= to <=
+Changed fireControl.cpp moving avgX=avgX/avgDenomintator from inside the for loop to outside it
+Added getCommandFinishTime() to fireControl class
+Added lastCommandTime to fireControl class
+Added if(returnAngle>wantedX) return wantedX; to line 165,174,210 and 215 in drvMotorSim.cpp
+
+Things to do...
+add lastcommandtime to constructors
